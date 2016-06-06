@@ -72,10 +72,16 @@ uint8_t usb_joystick_class::manual_mode = 0;
 usb_serial_class Serial;
 #endif
 
+#ifdef USB_XINPUT
+	usb_xinput_class XInput;
+#endif
+
 
 #else // F_CPU < 20 MHz
 
 #if defined(USB_SERIAL) || defined(USB_SERIAL_HID)
+usb_serial_class Serial;
+#elif (USB_DISABLED)
 usb_serial_class Serial;
 #else
 usb_seremu_class Serial;
